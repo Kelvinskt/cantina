@@ -1,0 +1,34 @@
+C:\Users\25162858\source\repos\Cantina forms\bin\Debug\net8.0-windows\Cantina forms.exe
+C:\Users\25162858\source\repos\Cantina forms\bin\Debug\net8.0-windows\Cantina forms.deps.json
+C:\Users\25162858\source\repos\Cantina forms\bin\Debug\net8.0-windows\Cantina forms.runtimeconfig.json
+C:\Users\25162858\source\repos\Cantina forms\bin\Debug\net8.0-windows\Cantina forms.dll
+C:\Users\25162858\source\repos\Cantina forms\bin\Debug\net8.0-windows\Cantina forms.pdb
+C:\Users\25162858\source\repos\Cantina forms\obj\Debug\net8.0-windows\Cantina_forms.Form1.resources
+C:\Users\25162858\source\repos\Cantina forms\obj\Debug\net8.0-windows\Cantina forms.csproj.GenerateResource.cache
+C:\Users\25162858\source\repos\Cantina forms\obj\Debug\net8.0-windows\Cantina forms.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\25162858\source\repos\Cantina forms\obj\Debug\net8.0-windows\Cantina forms.AssemblyInfoInputs.cache
+C:\Users\25162858\source\repos\Cantina forms\obj\Debug\net8.0-windows\Cantina forms.AssemblyInfo.cs
+C:\Users\25162858\source\repos\Cantina forms\obj\Debug\net8.0-windows\Cantina forms.csproj.CoreCompileInputs.cache
+C:\Users\25162858\source\repos\Cantina forms\obj\Debug\net8.0-windows\Cantina forms.dll
+C:\Users\25162858\source\repos\Cantina forms\obj\Debug\net8.0-windows\refint\Cantina forms.dll
+C:\Users\25162858\source\repos\Cantina forms\obj\Debug\net8.0-windows\Cantina forms.pdb
+C:\Users\25162858\source\repos\Cantina forms\obj\Debug\net8.0-windows\Cantina forms.genruntimeconfig.cache
+C:\Users\25162858\source\repos\Cantina forms\obj\Debug\net8.0-windows\ref\Cantina forms.dll
+C:\Users\25162858\Documents\cantinaC\Cantina forms\obj\Debug\net8.0-windows\Cantina_forms.Form1.resources
+C:\Users\25162858\Documents\cantinaC\Cantina forms\obj\Debug\net8.0-windows\Cantina forms.csproj.GenerateResource.cache
+C:\Users\25162858\Documents\cantinaC\Cantina forms\obj\Debug\net8.0-windows\Cantina forms.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\25162858\Documents\cantinaC\Cantina forms\obj\Debug\net8.0-windows\Cantina forms.AssemblyInfoInputs.cache
+C:\Users\25162858\Documents\cantinaC\Cantina forms\obj\Debug\net8.0-windows\Cantina forms.AssemblyInfo.cs
+C:\Users\25162858\Documents\cantinaC\Cantina forms\obj\Debug\net8.0-windows\Cantina forms.csproj.CoreCompileInputs.cache
+C:\Users\25162858\Documents\cantinaC\Cantina forms\obj\Debug\net8.0-windows\Cantina forms.sourcelink.json
+C:\Users\25162858\Documents\cantinaC\Cantina forms\obj\Debug\net8.0-windows\Cantina forms.dll
+C:\Users\25162858\Documents\cantinaC\Cantina forms\obj\Debug\net8.0-windows\refint\Cantina forms.dll
+C:\Users\25162858\Documents\cantinaC\Cantina forms\obj\Debug\net8.0-windows\Cantina forms.pdb
+C:\Users\25162858\Documents\cantinaC\Cantina forms\bin\Debug\net8.0-windows\Cantina forms.exe
+C:\Users\25162858\Documents\cantinaC\Cantina forms\bin\Debug\net8.0-windows\Cantina forms.deps.json
+C:\Users\25162858\Documents\cantinaC\Cantina forms\bin\Debug\net8.0-windows\Cantina forms.runtimeconfig.json
+C:\Users\25162858\Documents\cantinaC\Cantina forms\bin\Debug\net8.0-windows\Cantina forms.dll
+C:\Users\25162858\Documents\cantinaC\Cantina forms\bin\Debug\net8.0-windows\Cantina forms.pdb
+C:\Users\25162858\Documents\cantinaC\Cantina forms\obj\Debug\net8.0-windows\Cantina forms.genruntimeconfig.cache
+C:\Users\25162858\Documents\cantinaC\Cantina forms\obj\Debug\net8.0-windows\ref\Cantina forms.dll
+C:\Users\25162858\Documents\cantinaC\Cantina forms\obj\Debug\net8.0-windows\Cantina_forms.Properties.Resources.resources
