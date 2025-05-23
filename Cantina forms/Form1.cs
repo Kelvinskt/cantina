@@ -20,7 +20,11 @@ namespace Cantina_forms
 
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
-
+            if (string.IsNullOrEmpty(textBox4.Text))
+            {
+                MessageBox.Show("INFORME SEU NOME");
+                return;
+            }
 
             if (listBox1.SelectedIndex == -1)
             {
@@ -39,15 +43,17 @@ namespace Cantina_forms
                 listBox2.Items.Add(ProdutoSelecionado);
                 label3.Visible = false;
                 TotalPedido += ProdutoSelecionado.Valor * Quant;
-                btnTotal.Text = $"TOTAL: R${TotalPedido:F2}";
+                textBox3.Text = $"TOTAL: R${TotalPedido:F2}";
                 listBox1.SelectedIndex = -1;
                 numQuantidade.Value = 0;
-                btnTotal.Visible = true;
+                textBox3.Visible = true;
             }
 
             if (listBox2.Items.Count > 0)
             {
                 comboBox1.Visible = true;
+                label2.Visible = true;
+
             }
 
         }
@@ -66,12 +72,12 @@ namespace Cantina_forms
             if (listBox2.SelectedIndex != -1)
             {
                 int Quant = (int)numQuantidade.Value;
-                btnTotal.Visible = true;
+                textBox3.Visible = true;
                 Produtos ProdutoSelecionado = (Produtos)listBox2.SelectedItem;
                 TotalPedido -= ProdutoSelecionado.Valor * Quant;
                 listBox2.Items.RemoveAt(listBox2.SelectedIndex);
                 label4.Visible = false;
-                btnTotal.Text = $"TOTAL: R${TotalPedido}";
+                textBox3.Text = $"TOTAL: R${TotalPedido}";
                 numQuantidade.Enabled = true;
                 numQuantidade.Value = 0;
 
@@ -101,8 +107,9 @@ namespace Cantina_forms
             if (listBox2.Items.Count == 0)
             {
                 comboBox1.Visible = false;
+
             }
-           
+
 
         }
 
@@ -117,12 +124,19 @@ namespace Cantina_forms
 
         private void listBox2_SelectedIndexChanged_1(object sender, EventArgs e)
         {
+            
             if (listBox2.Items.Count == 0)
             {
-                btnTotal.Visible = false;
-                
+                textBox3.Visible = false;
+                label2.Visible = false;
+                comboBox1.Visible = false;
+                label5.Visible = false;
+                textBox1.Visible = false;
+                textBox2.Visible = false;
+
+
             }
-           
+
             if (listBox2.SelectedIndex != -1)
             {
                 Produtos ProdutoSelecionado = (Produtos)listBox2.SelectedItem;
@@ -150,22 +164,26 @@ namespace Cantina_forms
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
-            if (comboBox1.SelectedIndex == 0 )
+
+            if (comboBox1.SelectedIndex == 0)
             {
                 textBox1.Visible = true;
                 textBox2.Visible = true;
+                label5.Visible = true;
+
             }
             else
             {
                 textBox1.Visible = false;
                 textBox2.Visible = false;
+                label5.Visible = false;
+
             }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-           if (listBox1.Items.Count == -1)
+            if (listBox1.Items.Count == -1)
             {
                 textBox1.Enabled = false;
             }
@@ -173,15 +191,94 @@ namespace Cantina_forms
             {
                 textBox1.Enabled = true;
             }
-                if (double.TryParse(textBox1.Text, out double Valor))
+            if (double.TryParse(textBox1.Text, out double Valor))
+            {
+                if (Valor >= TotalPedido)
                 {
-                    if (Valor >= TotalPedido)
-                    {
-                        double troco = Valor - TotalPedido;
-                        textBox2.Text = $" R${troco}";
-                    }
+                    double troco = Valor - TotalPedido;
+                    textBox2.Text = $" R${troco}";
                 }
             }
         }
+
+        private void label1_Click_3(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(textBox4.Text))
+            {
+                MessageBox.Show("DIGITE SEU NOME");
+                return;
+            }
+            if (listBox2.Items.Count == 0)
+            {
+                MessageBox.Show("FAÇA UM PEDIDO");
+                return;
+            }
+            if (string.IsNullOrEmpty(comboBox1.Text))
+            {
+                MessageBox.Show("ESCOLHA O METODO DE PAGAMENTO");
+                return;
+            }
+            if (comboBox1.SelectedIndex == 0)
+            {
+                if (string.IsNullOrWhiteSpace(textBox1.Text))
+                {
+                    MessageBox.Show("INFORME O TROCO");
+                    return;
+                }
+            if (!double.TryParse(textBox1.Text, out double valorRecebido))
+            {
+                    MessageBox.Show("VALOR INVALIDO PARA TROCO");
+                    return;
+                }
+            if (valorRecebido < TotalPedido)
+                {
+                    MessageBox.Show("VALOR INSUFICIENTE");
+                    return;
+                }
+            }
+            
+            MessageBox.Show($@"TOTAL DO SEU PEDIDO: R${TotalPedido}
+NOME: {textBox4.Text.ToUpper()}
+METODO DE PAGAMENTO: {comboBox1.Text}
+{DateTime.Now}");
+
+            textBox4.Clear(); 
+            textBox1.Clear();
+            textBox2.Clear();
+            textBox3.Clear();
+            comboBox1.SelectedIndex = -1;
+            listBox2.Items.Clear(); 
+            listBox1.SelectedIndex = -1; 
+            numQuantidade.Value = 1;
+            TotalPedido = 0; 
+            textBox3.Visible = false;
+            comboBox1.Visible = false;
+            label2.Visible = false;
+            label5.Visible = false;
+            textBox1.Visible = false;
+            textBox2.Visible = false;
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+        
+        }
     }
+}
+
 
