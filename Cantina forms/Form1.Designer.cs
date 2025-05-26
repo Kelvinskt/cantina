@@ -46,6 +46,8 @@
             button1 = new Button();
             textBox4 = new TextBox();
             label6 = new Label();
+            label7 = new Label();
+            label8 = new Label();
             ((System.ComponentModel.ISupportInitialize)numQuantidade).BeginInit();
             SuspendLayout();
             // 
@@ -229,12 +231,34 @@
             label6.TabIndex = 20;
             label6.Text = "ADICIONE SEU NOME";
             // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Adobe Arabic", 9.75F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            label7.Location = new Point(551, 255);
+            label7.Name = "label7";
+            label7.Size = new Size(36, 14);
+            label7.TabIndex = 21;
+            label7.Text = "TOTAL";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Adobe Arabic", 9.75F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            label8.Location = new Point(551, 306);
+            label8.Name = "label8";
+            label8.Size = new Size(39, 14);
+            label8.TabIndex = 22;
+            label8.Text = "TROCO";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(800, 450);
+            Controls.Add(label8);
+            Controls.Add(label7);
             Controls.Add(label6);
             Controls.Add(textBox4);
             Controls.Add(button1);
@@ -281,5 +305,7 @@
         private Button button1;
         private TextBox textBox4;
         private Label label6;
+        private Label label7;
+        private Label label8;
     }
 }

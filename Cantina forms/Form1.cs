@@ -20,11 +20,7 @@ namespace Cantina_forms
 
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(textBox4.Text))
-            {
-                MessageBox.Show("INFORME SEU NOME");
-                return;
-            }
+           
 
             if (listBox1.SelectedIndex == -1)
             {
@@ -39,14 +35,22 @@ namespace Cantina_forms
                 int Quant = (int)numQuantidade.Value;
 
                 Produtos ProdutoSelecionado = (Produtos)listBox1.SelectedItem;
-                ProdutoSelecionado.Quantidade = Quant;
+                ProdutoSelecionado = new Produtos(ProdutoSelecionado.Descricao, ProdutoSelecionado.Valor)
+                {
+                    Quantidade = (int)numQuantidade.Value
+                };
+
                 listBox2.Items.Add(ProdutoSelecionado);
                 label3.Visible = false;
-                TotalPedido += ProdutoSelecionado.Valor * Quant;
+
+                TotalPedido += ProdutoSelecionado.Valor * ProdutoSelecionado.Quantidade;
                 textBox3.Text = $"TOTAL: R${TotalPedido:F2}";
-                listBox1.SelectedIndex = -1;
-                numQuantidade.Value = 0;
                 textBox3.Visible = true;
+
+                listBox1.SelectedIndex = -1;
+                numQuantidade.Value = 1;
+
+               
             }
 
             if (listBox2.Items.Count > 0)
@@ -69,21 +73,22 @@ namespace Cantina_forms
                 label4.Visible = true;
                 return;
             }
-            if (listBox2.SelectedIndex != -1)
-            {
-                int Quant = (int)numQuantidade.Value;
-                textBox3.Visible = true;
+          
                 Produtos ProdutoSelecionado = (Produtos)listBox2.SelectedItem;
-                TotalPedido -= ProdutoSelecionado.Valor * Quant;
+                TotalPedido -= ProdutoSelecionado.Valor * ProdutoSelecionado.Quantidade;
                 listBox2.Items.RemoveAt(listBox2.SelectedIndex);
+
                 label4.Visible = false;
+
                 textBox3.Text = $"TOTAL: R${TotalPedido}";
+                textBox3.Visible = listBox2.Items.Count > 0;
+
                 numQuantidade.Enabled = true;
-                numQuantidade.Value = 0;
+                numQuantidade.Value = 1;
 
             }
 
-        }
+        
 
         private void btnTotal_Click(object sender, EventArgs e)
         {
@@ -95,7 +100,7 @@ namespace Cantina_forms
 
             listBox1.Items.Add(new Produtos("PÃO DE QUEIJO", 3.50));
             listBox1.Items.Add(new Produtos("COXINHA", 5));
-            listBox1.Items.Add(new Produtos("PPASTEL DE CARNE", 6));
+            listBox1.Items.Add(new Produtos("PASTEL DE CARNE", 6));
             listBox1.Items.Add(new Produtos("PASTEL DE QUEIJO", 5.50));
             listBox1.Items.Add(new Produtos("SUCO NATURAL (300ml)", 4));
             listBox1.Items.Add(new Produtos("REFRIGERANTE LATA", 4.50));
@@ -183,6 +188,10 @@ namespace Cantina_forms
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
+            if (double.TryParse(textBox1.Text, out double valor))
+            {
+
+            }
             if (listBox1.Items.Count == -1)
             {
                 textBox1.Enabled = false;
@@ -218,11 +227,8 @@ namespace Cantina_forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(textBox4.Text))
-            {
-                MessageBox.Show("DIGITE SEU NOME");
-                return;
-            }
+           
+          
             if (listBox2.Items.Count == 0)
             {
                 MessageBox.Show("FAÇA UM PEDIDO");
@@ -240,7 +246,12 @@ namespace Cantina_forms
                     MessageBox.Show("INFORME O TROCO");
                     return;
                 }
-            if (!double.TryParse(textBox1.Text, out double valorRecebido))
+                if (string.IsNullOrWhiteSpace(textBox4.Text))
+                {
+                    MessageBox.Show("DIGITE SEU NOME");
+                    return;
+                }
+                if (!double.TryParse(textBox1.Text, out double valorRecebido))
             {
                     MessageBox.Show("VALOR INVALIDO PARA TROCO");
                     return;
