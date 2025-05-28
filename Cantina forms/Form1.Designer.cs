@@ -73,6 +73,7 @@
             // 
             // btnAdicionar
             // 
+            btnAdicionar.Font = new Font("Adobe Arabic", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             btnAdicionar.Location = new Point(315, 116);
             btnAdicionar.Name = "btnAdicionar";
             btnAdicionar.Size = new Size(112, 24);
@@ -83,6 +84,7 @@
             // 
             // btnRemover
             // 
+            btnRemover.Font = new Font("Adobe Arabic", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             btnRemover.Location = new Point(315, 211);
             btnRemover.Name = "btnRemover";
             btnRemover.Size = new Size(112, 23);
@@ -205,6 +207,7 @@
             // 
             // button1
             // 
+            button1.Font = new Font("Adobe Arabic", 9.75F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             button1.Location = new Point(315, 391);
             button1.Name = "button1";
             button1.Size = new Size(119, 23);
@@ -240,6 +243,8 @@
             label7.Size = new Size(36, 14);
             label7.TabIndex = 21;
             label7.Text = "TOTAL";
+            label7.Visible = false;
+            label7.Click += label7_Click;
             // 
             // label8
             // 
@@ -250,6 +255,7 @@
             label8.Size = new Size(39, 14);
             label8.TabIndex = 22;
             label8.Text = "TROCO";
+            label8.Visible = false;
             // 
             // Form1
             // 
