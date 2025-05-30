@@ -14,6 +14,7 @@ namespace Cantina_forms
  
         private double valor;
 
+
         public Produtos()
         {
             descricao = string.Empty;

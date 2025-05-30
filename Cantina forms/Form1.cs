@@ -3,6 +3,7 @@ namespace Cantina_forms
     public partial class Form1 : Form
     {
         double TotalPedido = 0;
+        List<PedidoCliente> listaPedidos = new List<PedidoCliente>();
 
         public Form1()
         {
@@ -57,7 +58,7 @@ namespace Cantina_forms
             {
                 comboBox1.Visible = true;
                 label2.Visible = true;
-                label7 .Visible = true;
+                label7.Visible = true;
 
             }
 
@@ -140,7 +141,7 @@ namespace Cantina_forms
                 textBox1.Visible = false;
                 textBox2.Visible = false;
                 label7.Visible = false;
-              
+
 
 
             }
@@ -263,12 +264,12 @@ namespace Cantina_forms
                     return;
                 }
             }
-                if (string.IsNullOrWhiteSpace(textBox4.Text))
-                {
-                    MessageBox.Show("DIGITE SEU NOME");
-                    return;
-                }
-            
+            if (string.IsNullOrWhiteSpace(textBox4.Text))
+            {
+                MessageBox.Show("DIGITE SEU NOME");
+                return;
+            }
+
 
             MessageBox.Show($@"TOTAL DO SEU PEDIDO: R${TotalPedido}
 NOME: {textBox4.Text.ToUpper()}
@@ -301,6 +302,11 @@ METODO DE PAGAMENTO: {comboBox1.Text}
         private void label7_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+           
         }
     }
 }

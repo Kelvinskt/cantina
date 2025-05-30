@@ -48,6 +48,7 @@
             label6 = new Label();
             label7 = new Label();
             label8 = new Label();
+            button2 = new Button();
             ((System.ComponentModel.ISupportInitialize)numQuantidade).BeginInit();
             SuspendLayout();
             // 
@@ -257,12 +258,23 @@
             label8.Text = "TROCO";
             label8.Visible = false;
             // 
+            // button2
+            // 
+            button2.Location = new Point(656, 391);
+            button2.Name = "button2";
+            button2.Size = new Size(75, 23);
+            button2.TabIndex = 23;
+            button2.Text = "button2";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(800, 450);
+            Controls.Add(button2);
             Controls.Add(label8);
             Controls.Add(label7);
             Controls.Add(label6);
@@ -313,5 +325,6 @@
         private Label label6;
         private Label label7;
         private Label label8;
+        private Button button2;
     }
 }
