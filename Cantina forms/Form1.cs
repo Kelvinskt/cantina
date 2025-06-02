@@ -269,12 +269,23 @@ namespace Cantina_forms
                 MessageBox.Show("DIGITE SEU NOME");
                 return;
             }
-
+            PedidoCliente novoPedido = new PedidoCliente
+            {
+                Nome = textBox4.Text,
+                Itens = listBox2.Items.Cast<Produtos>().ToList(),
+                Total = TotalPedido,
+                MetodoPagamento = comboBox1.Text,
+                DataPedido = DateTime.Now
+            };
+            listaPedidos.Add(novoPedido);
 
             MessageBox.Show($@"TOTAL DO SEU PEDIDO: R${TotalPedido}
 NOME: {textBox4.Text.ToUpper()}
 METODO DE PAGAMENTO: {comboBox1.Text}
 {DateTime.Now}");
+
+            Form2 form2 = new Form2(listaPedidos);
+            form2.ShowDialog();
 
             textBox4.Clear();
             textBox1.Clear();
@@ -306,7 +317,8 @@ METODO DE PAGAMENTO: {comboBox1.Text}
 
         private void button2_Click(object sender, EventArgs e)
         {
-           
+            Form2 form2 = new Form2(listaPedidos);
+            form2.ShowDialog();
         }
     }
 }

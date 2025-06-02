@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Cantina_forms
 {
-    internal class Produtos
+    public class Produtos
     {
         private int quantidade;
 
