@@ -35,20 +35,28 @@ namespace Cantina_forms
         public double Valor
         {
             get { return valor; }
-            set {  valor = value; }
+            set
+            {
+                if (value < 0) throw new ArgumentException("Valor não pode ser negativo.");
+                valor = value;
+            }
         }
         public int Quantidade
         {
             get { return quantidade; }
-            set { quantidade = value; }
+            set 
+            {
+                if (value < 0) throw new ArgumentException("Quantidade não pode ser negativa.");
+                quantidade = value;
+            }
         }
         public override string ToString()
         {
             if (quantidade > 0)
-            return $"{quantidade} x - {descricao} - R${valor}";
+            return $"{quantidade} x - {descricao} - R${valor:F2}";
             else
             {
-                return $"{descricao} - R${valor}";
+                return $"{descricao} - R${valor:F2}";
             }
 
         }
