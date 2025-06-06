@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Cantina forms")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f5a9ad9fd8bea9ea72a507489d8b65238beeba91")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7f1bbcfd0e869bb61b04ef8cde0ef930487f8710")]
 [assembly: System.Reflection.AssemblyProductAttribute("Cantina forms")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Cantina forms")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

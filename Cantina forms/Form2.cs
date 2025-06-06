@@ -12,13 +12,28 @@ namespace Cantina_forms
 {
     public partial class Form2 : Form
     {
-        private List<PedidoCliente> pedidos;
-        private List<PedidoCliente> pedidosEntregues = new List<PedidoCliente>();
+    private List<PedidoCliente> pedidosEntregues;
+    private List<PedidoCliente> pedidosAtivos = new List<PedidoCliente>();
 
-        public Form2(List<PedidoCliente> pedidos)
+        public Form2(List<PedidoCliente> listaPedidos)
         {
             InitializeComponent();
-            this.pedidos = pedidos;
+            pedidosEntregues = listaPedidos;
+            pedidosAtivos = new List<PedidoCliente>(listaPedidos);
+        }
+        public Form2()
+    {
+        InitializeComponent();
+    }
+        private void AtualizarHistoricoPedidos()
+        {
+            if (dataGridView1 == null)
+                return;
+
+            var listaParaExibir = GerenciadorDados.HistoricoGlobal.AsEnumerable().Reverse().ToList();
+
+            dataGridView1.DataSource = null;
+            dataGridView1.DataSource = listaParaExibir;
         }
         private void ConfigurarDataGridViewHistorico()
         {
@@ -52,7 +67,7 @@ namespace Cantina_forms
         {
             listBox1.Items.Clear();
 
-            foreach (var pedido in pedidos)
+            foreach (var pedido in GerenciadorDados.PedidosAtivos)
             {
                 listBox1.Items.Add(pedido.Nome.ToUpper());
             }
@@ -62,17 +77,7 @@ namespace Cantina_forms
                 listBox2.Items.Clear();
             }
 
-        }
-        private void AtualizarHistoricoPedidos()
-        {
-            if (dataGridView1 == null)
-                return;
-            var listaParaExibir = pedidosEntregues.AsEnumerable().Reverse().ToList();
-
-            dataGridView1.DataSource = null;
-            dataGridView1.DataSource = listaParaExibir;
-        }
-
+        }       
         private void MostrarDetalhesPedido(PedidoCliente pedido)
         {
             listBox2.Items.Clear();
@@ -96,41 +101,14 @@ namespace Cantina_forms
         {
             listBox2.Items.Clear();
 
-            if (listBox1.SelectedIndex != -1 && listBox1.SelectedIndex < pedidos.Count)
+            if (listBox1.SelectedIndex != -1 && listBox1.SelectedIndex < GerenciadorDados.PedidosAtivos.Count)
             {
-                PedidoCliente pedidoSelecionado = pedidos[listBox1.SelectedIndex];
-                MostrarDetalhesPedido(pedidoSelecionado); 
-
-                
-                var confirmResult = MessageBox.Show("Deseja marcar este pedido como entregue?",
-                                                    "Confirmar Entrega",
-                                                    MessageBoxButtons.YesNo,
-                                                    MessageBoxIcon.Question);
-
-                if (confirmResult == DialogResult.Yes)
-                {
-                    pedidosEntregues.Add(pedidoSelecionado);
-
-                    if (pedidosEntregues.Count > 5)
-                    {
-                        pedidosEntregues.RemoveAt(0);
-                    }
-
-                    pedidos.RemoveAt(listBox1.SelectedIndex);
-
-                    AtualizaListaPedidosAtivos();
-                    AtualizarHistoricoPedidos();
-
-                    listBox2.Items.Clear(); 
-                }
-            }
-            else
-            {
-                listBox2.Items.Clear();
+                PedidoCliente pedidoSelecionado = GerenciadorDados.PedidosAtivos[listBox1.SelectedIndex];
+                MostrarDetalhesPedido(pedidoSelecionado);
             }
         }
 
-   
+
 
         private void button3_Click(object sender, EventArgs e)
         {
@@ -156,26 +134,22 @@ namespace Cantina_forms
 
         private void button1_Click(object sender, EventArgs e)
         {
+            int index = listBox1.SelectedIndex;
+
+            if (index != -1 && index < GerenciadorDados.PedidosAtivos.Count)
             {
-                if (listBox1.SelectedIndex != -1 && listBox1.SelectedIndex < pedidos.Count)
-                {
-                    PedidoCliente pedidoSelecionado = pedidos[listBox1.SelectedIndex];
+                var pedidoSelecionado = GerenciadorDados.PedidosAtivos[index];
 
-                    pedidosEntregues.Add(pedidoSelecionado);
+            
+                GerenciadorDados.AdicionarHistorico(pedidoSelecionado);
 
-                    if (pedidosEntregues.Count > 5)
-                    {
-                        pedidosEntregues.RemoveAt(0);
-                    }
+           
+                GerenciadorDados.PedidosAtivos.RemoveAt(index);
 
-                    pedidos.RemoveAt(listBox1.SelectedIndex);
+                AtualizaListaPedidosAtivos();
+                AtualizarHistoricoPedidos();
 
-                    AtualizaListaPedidosAtivos();
-                    AtualizarHistoricoPedidos();
-
-                    listBox2.Items.Clear();
-                }
-               
+                listBox2.Items.Clear();
             }
         }
 
@@ -183,5 +157,11 @@ namespace Cantina_forms
         {
 
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
+

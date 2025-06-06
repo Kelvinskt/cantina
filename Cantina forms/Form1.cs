@@ -277,14 +277,14 @@ namespace Cantina_forms
                 MetodoPagamento = comboBox1.Text,
                 DataPedido = DateTime.Now
             };
-            listaPedidos.Add(novoPedido);
+            GerenciadorDados.PedidosAtivos.Add(novoPedido);
 
             MessageBox.Show($@"TOTAL DO SEU PEDIDO: R${TotalPedido}
 NOME: {textBox4.Text.ToUpper()}
 METODO DE PAGAMENTO: {comboBox1.Text}
 {DateTime.Now}");
 
-            Form2 form2 = new Form2(listaPedidos);
+            Form2 form2 = new Form2();
             form2.ShowDialog();
 
             textBox4.Clear();
