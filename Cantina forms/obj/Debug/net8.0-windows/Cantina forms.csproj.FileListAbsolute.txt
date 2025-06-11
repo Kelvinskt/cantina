@@ -33,3 +33,4 @@ C:\Users\25162858\Documents\cantinaC\Cantina forms\obj\Debug\net8.0-windows\Cant
 C:\Users\25162858\Documents\cantinaC\Cantina forms\obj\Debug\net8.0-windows\ref\Cantina forms.dll
 C:\Users\25162858\Documents\cantinaC\Cantina forms\obj\Debug\net8.0-windows\Cantina_forms.Properties.Resources.resources
 C:\Users\25162858\Documents\cantinaC\Cantina forms\obj\Debug\net8.0-windows\Cantina_forms.Form2.resources
+C:\Users\25162858\Documents\cantinaC\Cantina forms\obj\Debug\net8.0-windows\Cantina_forms.Form3.resources

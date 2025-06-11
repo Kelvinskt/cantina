@@ -12,8 +12,8 @@ namespace Cantina_forms
 {
     public partial class Form2 : Form
     {
-    private List<PedidoCliente> pedidosEntregues;
-    private List<PedidoCliente> pedidosAtivos = new List<PedidoCliente>();
+        private List<PedidoCliente> pedidosEntregues;
+        private List<PedidoCliente> pedidosAtivos = new List<PedidoCliente>();
 
         public Form2(List<PedidoCliente> listaPedidos)
         {
@@ -22,15 +22,30 @@ namespace Cantina_forms
             pedidosAtivos = new List<PedidoCliente>(listaPedidos);
         }
         public Form2()
-    {
-        InitializeComponent();
-    }
+        {
+            InitializeComponent();
+            this.Load += Form2_Load;
+        }
         private void AtualizarHistoricoPedidos()
         {
             if (dataGridView1 == null)
                 return;
 
-            var listaParaExibir = GerenciadorDados.HistoricoGlobal.AsEnumerable().Reverse().ToList();
+
+            var listaParaExibir = GerenciadorDados.HistoricoGlobal
+                .AsEnumerable()
+                .Reverse()
+                .Select(p => new
+                {
+                    Nome = p.Nome.ToUpper(),
+                    Total = $"R${p.Total:F2}",
+                    MetodoPagamento = p.MetodoPagamento,
+                    DataPedido = p.DataPedido.ToString("dd/MM/yyyy"),
+                    Troco = (p.MetodoPagamento.Equals("Dinheiro", StringComparison.OrdinalIgnoreCase) && p.ValorRecebido > 0)
+                        ? $"R${(p.ValorRecebido - p.Total):F2}"
+                        : string.Empty
+                })
+                .ToList();
 
             dataGridView1.DataSource = null;
             dataGridView1.DataSource = listaParaExibir;
@@ -40,13 +55,45 @@ namespace Cantina_forms
             if (dataGridView1 == null)
                 return;
 
-            dataGridView1.AutoGenerateColumns = true;
+            dataGridView1.AutoGenerateColumns = false;
             dataGridView1.ReadOnly = true;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
+            dataGridView1.Columns.Clear();
+
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "Nome",
+                HeaderText = "NOME"
+            });
+
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "Total",
+                HeaderText = "TOTAL"
+            });
+
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "Troco",
+                HeaderText = "TROCO"
+            });
+
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "MetodoPagamento",
+                HeaderText = "PAGAMENTO"
+            });
+
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "DataPedido",
+                HeaderText = "DATA"
+            });
         }
         private void Form2_Load(object sender, EventArgs e)
         {
+            listBox1.SelectedIndex = -1;
             ConfigurarDataGridViewHistorico();
 
             AtualizaListaPedidosAtivos();
@@ -60,6 +107,7 @@ namespace Cantina_forms
             {
                 button3.Text = "Mostrar Histórico";
             }
+
         }
 
 
@@ -76,20 +124,25 @@ namespace Cantina_forms
             {
                 listBox2.Items.Clear();
             }
-
-        }       
+            listBox1.SelectedIndex = -1;
+        }
         private void MostrarDetalhesPedido(PedidoCliente pedido)
         {
             listBox2.Items.Clear();
-            listBox2.Items.Add($"Nome: {pedido.Nome}");
-            listBox2.Items.Add($"Total: R${pedido.Total:F2}");
-            listBox2.Items.Add($"Pagamento: {pedido.MetodoPagamento}");
-            listBox2.Items.Add($"Data: {pedido.DataPedido:dd/MM/yyyy HH:mm}");
-            listBox2.Items.Add("Itens:");
+            listBox2.Items.Add($"NOME: {pedido.Nome.ToUpper()}");
+            listBox2.Items.Add($"TOTAL: R${pedido.Total:F2}");
+            listBox2.Items.Add($"PAGAMENTO: {pedido.MetodoPagamento}");
+            listBox2.Items.Add($"DATA: {pedido.DataPedido:dd/MM/yyyy}");
+            listBox2.Items.Add("ITENS:");
 
             foreach (var item in pedido.Itens)
             {
-                listBox2.Items.Add($" - {item.ToString()}");
+
+
+                if (GerenciadorDados.ProdutosPendentesCozinha.Contains(item))
+                    listBox2.Items.Add($" - {item.Descricao} - {item.StatusCozinha}");
+                else
+                    listBox2.Items.Add($" - {item.Descricao}");
             }
         }
         private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
@@ -140,10 +193,10 @@ namespace Cantina_forms
             {
                 var pedidoSelecionado = GerenciadorDados.PedidosAtivos[index];
 
-            
+
                 GerenciadorDados.AdicionarHistorico(pedidoSelecionado);
 
-           
+
                 GerenciadorDados.PedidosAtivos.RemoveAt(index);
 
                 AtualizaListaPedidosAtivos();
@@ -162,6 +215,19 @@ namespace Cantina_forms
         {
 
         }
+
+        private void btnCozinha_Click(object sender, EventArgs e)
+        {
+            int selectedIndex = listBox1.SelectedIndex;
+            if (selectedIndex != -1 && selectedIndex < GerenciadorDados.PedidosAtivos.Count)
+            {
+                listBox1.SelectedIndex = -1;
+                var pedidoSelecionado = GerenciadorDados.PedidosAtivos[selectedIndex];
+                Form3 form3 = new Form3(pedidoSelecionado.Itens);
+                form3.ShowDialog();
+            }
+        }
     }
 }
+
 

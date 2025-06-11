@@ -14,7 +14,11 @@ namespace Cantina_forms
  
         private double valor;
 
+        public string StatusCozinha { get; set; } = "Em preparo";
 
+        public string DescricaoComStatus => $"{Descricao} - {StatusCozinha}";
+
+      
         public Produtos()
         {
             descricao = string.Empty;
@@ -53,10 +57,13 @@ namespace Cantina_forms
         public override string ToString()
         {
             if (quantidade > 0)
-            return $"{quantidade} x - {descricao} - R${valor:F2}";
+                return $"{Descricao} - R${Valor:F2} x{Quantidade}";
+
+
             else
             {
                 return $"{descricao} - R${valor:F2}";
+
             }
 
         }

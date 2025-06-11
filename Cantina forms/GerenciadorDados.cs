@@ -8,6 +8,21 @@ namespace Cantina_forms
 {
     public static class GerenciadorDados
     {
+        public static readonly List<string> ProdutosCozinha = new List<string>
+    {
+    "PASTEL DE CARNE",
+    "PASTEL DE QUEIJO",
+    "HAMBÚRGUER SIMPLES",
+    "HAMBÚRGUER COM QUEIJO",
+    "X-TUDO"
+
+    };
+
+        public static List<Produtos> ProdutosPendentesCozinha { get; set; } = new List<Produtos>();
+
+
+            
+
         public static List<PedidoCliente> PedidosAtivos { get; set; } = new List<PedidoCliente>();
 
         public static List<PedidoCliente> _historicoGlobal = new List<PedidoCliente>();

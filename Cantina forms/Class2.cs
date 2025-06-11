@@ -13,6 +13,7 @@ namespace Cantina_forms
         public double Total {  get; set; }
         public string MetodoPagamento { get; set; }
         public DateTime DataPedido { get; set; }
+        public double ValorRecebido { get; set; }
 
         public override string ToString()
         {
